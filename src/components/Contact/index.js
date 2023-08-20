@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
+// import { useRef } from 'react';
+// import emailjs from '@emailjs/browser';
 import { Snackbar } from '@mui/material';
 
 const Container = styled.div`
@@ -105,6 +105,7 @@ const ContactInputMessage = styled.textarea`
 
 const ContactButton = styled.input`
   width: 100%;
+  cursor:pointer;
   text-decoration: none;
   text-align: center;
   background: hsla(271, 100%, 50%, 1);
@@ -126,18 +127,18 @@ const Contact = () => {
 
   //hooks
   const [open, setOpen] = React.useState(false);
-  const form = useRef();
+  // const form = useRef();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    emailjs.sendForm('service_tox7kqs', 'template_nv7k7mj', form.current, 'SybVGsYS52j2TfLbi')
-      .then((result) => {
-        setOpen(true);
-        form.current.reset();
-      }, (error) => {
-        console.log(error.text);
-      });
-  }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   emailjs.sendForm('service_tox7kqs', 'template_nv7k7mj', form.current, 'SybVGsYS52j2TfLbi')
+  //     .then((result) => {
+  //       setOpen(true);
+  //       form.current.reset();
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+  // }
 
 
 
@@ -146,12 +147,12 @@ const Contact = () => {
       <Wrapper>
         <Title>Contact</Title>
         <Desc>Feel free to reach out to me for any questions or opportunities!</Desc>
-        <ContactForm ref={form} onSubmit={handleSubmit}>
+        <ContactForm action='https://formspree.io/f/xwkdlnbj' method='POST'>
           <ContactTitle>Email Me 🚀</ContactTitle>
-          <ContactInput placeholder="Your Email" name="from_email" />
-          <ContactInput placeholder="Your Name" name="from_name" />
-          <ContactInput placeholder="Subject" name="subject" />
-          <ContactInputMessage placeholder="Message" rows="4" name="message" />
+          <ContactInput placeholder="Your Email" name="Sender Email" />
+          <ContactInput placeholder="Your Name" name="Sender Name" />
+          <ContactInput placeholder="Subject" name="Subject" />
+          <ContactInputMessage placeholder="Message" rows="4" name="Message"  />
           <ContactButton type="submit" value="Send" />
         </ContactForm>
         <Snackbar
